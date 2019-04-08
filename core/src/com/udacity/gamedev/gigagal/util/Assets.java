@@ -105,12 +105,22 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public class PlatformAssets {
 
-        public final NinePatch platformNinePatch;
+        public final AtlasRegion forestPlatformSolid;
+        public final AtlasRegion forestPlatformThin;
+        public final AtlasRegion forestPlatformThinHalf;
+        public final AtlasRegion forestPlatformThinQuarter;
+
 
         public PlatformAssets(TextureAtlas atlas) {
-            AtlasRegion region = atlas.findRegion(Constants.PLATFORM_SPRITE);
-            int edge = Constants.PLATFORM_EDGE;
-            platformNinePatch = new NinePatch(region, edge, edge, edge, edge);
+            forestPlatformSolid = atlas.findRegion(Constants.FOREST_PLATFORM_SOLID);
+            forestPlatformThin = atlas.findRegion(Constants.FOREST_PLATFORM_THIN);
+            forestPlatformThinHalf = atlas.findRegion(Constants.FOREST_PLATFORM_THIN_HALF);
+            forestPlatformThinQuarter = atlas.findRegion(Constants.FOREST_PLATFORM_THIN_QUARTER);
+
+
+
+            //int edge = Constants.PLATFORM_EDGE;
+            //platformNinePatch = new NinePatch(region, edge, edge, edge, edge);
         }
     }
 

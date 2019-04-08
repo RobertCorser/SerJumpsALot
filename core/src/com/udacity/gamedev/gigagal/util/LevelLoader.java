@@ -10,6 +10,8 @@ import com.udacity.gamedev.gigagal.entities.ExitPortal;
 import com.udacity.gamedev.gigagal.entities.GigaGal;
 import com.udacity.gamedev.gigagal.entities.Platform;
 import com.udacity.gamedev.gigagal.entities.Powerup;
+import com.udacity.gamedev.gigagal.util.Enums.PlatformType;
+import com.udacity.gamedev.gigagal.util.Enums.PlatformRegion;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -35,7 +37,7 @@ public class LevelLoader {
         try {
             rootJsonObject = (JSONObject) parser.parse(file.reader());
 
-              //EXPERIMENTAL CODE
+            //EXPERIMENTAL CODE
             JSONObject composite = (JSONObject) rootJsonObject.get(Constants.LEVEL_COMPOSITE);
 
             JSONArray platforms = (JSONArray) composite.get("sComposites");
@@ -104,7 +106,7 @@ public class LevelLoader {
 
         Array<Platform> platformArray = new Array<Platform>();
 
-        for(int x = 0; x < array.size(); x++){
+        for (int x = 0; x < array.size(); x++) {
             JSONObject platformObject = (JSONObject) array.get(x);
 
             Vector2 bottomLeft = extractXY(platformObject);
@@ -112,7 +114,18 @@ public class LevelLoader {
             final float width = ((Number) platformObject.get(Constants.LEVEL_WIDTH_KEY)).floatValue();
             final float height = ((Number) platformObject.get(Constants.LEVEL_HEIGHT_KEY)).floatValue();
 
-            final Platform platform = new Platform(bottomLeft.x, bottomLeft.y + height, width, height);
+            Platform platform = new Platform(bottomLeft.x, bottomLeft.y + height, width, height);
+
+            JSONObject platformComposite = (JSONObject) platformObject.get("composite");
+
+            JSONArray platformSImages = (JSONArray) platformComposite.get("sImages");
+
+            getType(platformSImages, platform);
+            getRegion(platformSImages, platform);
+
+            if (platformSImages.size() > 1) {
+                platform.setLength(platformSImages.size());
+            }
 
             platformArray.add(platform);
 
@@ -167,5 +180,37 @@ public class LevelLoader {
         level.getPlatforms().addAll(platformArray);
 
     }
+
+    private static void getType(JSONArray sImages, Platform platform) {
+        JSONObject rootPlatform = (JSONObject) sImages.get(0);
+
+        String platformType = (String) rootPlatform.get("imageName");
+
+        if (platformType.contains("solid")) {
+            platform.setType(PlatformType.THICK);
+        } else if (platformType.contains("thin")) {
+            platform.setType(PlatformType.THIN);
+        } else {
+            Gdx.app.error(TAG, "Invalid platform type");
+        }
+    }
+
+    private static void getRegion(JSONArray sImages, Platform platform) {
+        JSONObject rootPlatform = (JSONObject) sImages.get(0);
+
+        String platformRegion = (String) rootPlatform.get("imageName");
+
+        if (platformRegion.contains("forest")) {
+            platform.setRegion(PlatformRegion.FOREST);
+        } else if (platformRegion.contains("castle")) {
+            platform.setRegion(PlatformRegion.CASTLE);
+        } else if (platformRegion.contains("mountain")) {
+            platform.setRegion(PlatformRegion.MOUNTAIN);
+        } else {
+            Gdx.app.error(TAG, "Invalid platform region");
+        }
+
+    }
+
 
 }

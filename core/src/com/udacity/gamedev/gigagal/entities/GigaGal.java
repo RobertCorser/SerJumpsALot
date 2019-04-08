@@ -94,16 +94,17 @@ public class GigaGal {
             }
 
             for (Platform platform : platforms) {
-                if (landedOnPlatform(platform)) {
+                if (landedOnPlatform(platform, delta)) {
                     jumpState = Enums.JumpState.GROUNDED;
                     velocity.y = 0;
                     velocity.x = 0;
                     position.y = platform.top + Constants.GIGAGAL_EYE_HEIGHT;
+
                 }
             }
         }
 
-        // Collide with enemies
+        // Collide with enemies TODO Clean up this garbage
         Rectangle gigaGalBounds = new Rectangle(
                 position.x - Constants.GIGAGAL_STANCE_WIDTH / 2,
                 position.y - Constants.GIGAGAL_EYE_HEIGHT,
@@ -202,7 +203,7 @@ public class GigaGal {
         }
     }
 
-    boolean landedOnPlatform(Platform platform) {
+    boolean landedOnPlatform(Platform platform, float delta) {
         boolean leftFootIn = false;
         boolean rightFootIn = false;
         boolean straddle = false;
@@ -216,6 +217,7 @@ public class GigaGal {
             leftFootIn = (platform.left < leftFoot && platform.right > leftFoot);
             rightFootIn = (platform.left < rightFoot && platform.right > rightFoot);
             straddle = (platform.left > leftFoot && platform.right < rightFoot);
+
         }
         return leftFootIn || rightFootIn || straddle;
     }

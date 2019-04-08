@@ -13,28 +13,28 @@ bullet
   index: -1
 button-jump
   rotate: false
-  xy: 431, 28
+  xy: 699, 94
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button-move-left
   rotate: false
-  xy: 613, 94
+  xy: 733, 94
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button-move-right
   rotate: false
-  xy: 647, 94
+  xy: 767, 94
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button-shoot
   rotate: false
-  xy: 681, 94
+  xy: 801, 94
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -48,7 +48,7 @@ castle_town_platform
   index: -1
 enemy
   rotate: false
-  xy: 480, 82
+  xy: 394, 16
   size: 29, 44
   orig: 29, 44
   offset: 0, 0
@@ -69,7 +69,7 @@ exit-portal-2
   index: -1
 exit-portal-3
   rotate: false
-  xy: 216, 62
+  xy: 216, 28
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -104,21 +104,28 @@ explosion-large
   index: -1
 explosion-medium
   rotate: false
-  xy: 328, 24
+  xy: 532, 90
   size: 36, 36
   orig: 36, 36
   offset: 0, 0
   index: -1
 explosion-small
   rotate: false
-  xy: 511, 90
+  xy: 425, 24
   size: 36, 36
   orig: 36, 36
   offset: 0, 0
   index: -1
+forest_platform_dirt
+  rotate: false
+  xy: 342, 10
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
 forest_platform_solid
   rotate: false
-  xy: 276, 10
+  xy: 480, 76
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
@@ -130,37 +137,51 @@ forest_platform_thin
   orig: 128, 32
   offset: 0, 0
   index: -1
+forest_platform_thin_half
+  rotate: false
+  xy: 214, 94
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: -1
+forest_platform_thin_quarter
+  rotate: false
+  xy: 835, 94
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 jumping-left
   rotate: false
-  xy: 715, 91
+  xy: 869, 91
   size: 29, 35
   orig: 29, 35
   offset: 0, 0
   index: -1
 jumping-right
   rotate: false
-  xy: 549, 91
+  xy: 603, 91
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
   index: -1
 platform
   rotate: false
-  xy: 216, 2
+  xy: 282, 2
   size: 58, 58
   orig: 58, 58
   offset: 0, 0
   index: -1
 powerup
   rotate: false
-  xy: 480, 63
+  xy: 463, 43
   size: 15, 17
   orig: 15, 17
   offset: 0, 0
   index: -1
 standing-left
   rotate: false
-  xy: 746, 91
+  xy: 900, 91
   size: 28, 35
   orig: 28, 35
   offset: 0, 0
@@ -174,42 +195,42 @@ standing-right
   index: -1
 walk-1-left
   rotate: false
-  xy: 806, 91
+  xy: 960, 91
   size: 27, 35
   orig: 27, 35
   offset: 0, 0
   index: -1
 walk-1-right
   rotate: false
-  xy: 399, 25
+  xy: 635, 91
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
   index: -1
 walk-2-left
   rotate: false
-  xy: 835, 91
+  xy: 989, 91
   size: 25, 35
   orig: 25, 35
   offset: 0, 0
   index: -1
 walk-2-right
   rotate: false
-  xy: 581, 91
+  xy: 667, 91
   size: 30, 35
   orig: 30, 35
   offset: 0, 0
   index: -1
 walk-3-left
   rotate: false
-  xy: 776, 91
+  xy: 930, 91
   size: 28, 35
   orig: 28, 35
   offset: 0, 0
   index: -1
 walk-3-right
   rotate: false
-  xy: 366, 25
+  xy: 570, 91
   size: 31, 35
   orig: 31, 35
   offset: 0, 0

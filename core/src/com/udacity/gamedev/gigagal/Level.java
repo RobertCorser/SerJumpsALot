@@ -55,7 +55,7 @@ public class Level {
 
     public static Level debugLevel() {
         Level level = new Level();
-        level.initializeDebugLevel();
+        //level.initializeDebugLevel();
         return level;
     }
 
@@ -71,6 +71,8 @@ public class Level {
         }
 
         if (!gameOver && !victory) {
+
+
 
             gigaGal.update(delta, platforms);
 

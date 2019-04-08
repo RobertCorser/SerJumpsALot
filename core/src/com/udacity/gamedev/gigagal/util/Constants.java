@@ -23,7 +23,8 @@ public class Constants {
 
     public static final float JUMP_SPEED = 200;
     public static final Vector2 KNOCKBACK_VELOCITY = new Vector2(200, 200);
-    public static final float MAX_JUMP_DURATION = .1f;
+    //ORIGINAL VALUE public static final float MAX_JUMP_DURATION = .1f;
+    public static final float MAX_JUMP_DURATION = .25f;
     public static final int INITIAL_AMMO = 10;
     public static final int INITIAL_LIVES = 3;
 
@@ -40,8 +41,13 @@ public class Constants {
     public static final float WALK_LOOP_DURATION = 0.25f;
 
     // Platform
-    public static final String PLATFORM_SPRITE = "platform";
-    public static final int PLATFORM_EDGE = 8;
+
+    public static final String FOREST_PLATFORM_SOLID = "forest_platform_solid";
+    public static final String FOREST_PLATFORM_THIN = "forest_platform_thin";
+    public static final String FOREST_PLATFORM_THIN_HALF = "forest_platform_thin_half";
+    public static final String FOREST_PLATFORM_THIN_QUARTER = "forest_platform_thin_quarter";
+    //public static final String PLATFORM_SPRITE = "platform";
+    //public static final int PLATFORM_EDGE = 8;
 
     // Enemy
     public static final String ENEMY_SPRITE = "enemy";
