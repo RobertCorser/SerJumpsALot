@@ -118,7 +118,7 @@ public class Level {
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
-        batch.draw(Assets.instance.backgroundImg, -500, 0, 0, 0, viewport.getScreenWidth(), viewport.getScreenHeight());
+        //batch.draw(Assets.instance.backgroundImg, -500, 0, 0, 0, viewport.getScreenWidth(), viewport.getScreenHeight());
 
         for (Platform platform : platforms) {
             platform.render(batch);

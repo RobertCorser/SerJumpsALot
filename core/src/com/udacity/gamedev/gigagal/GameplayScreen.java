@@ -1,5 +1,6 @@
 package com.udacity.gamedev.gigagal;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.gigagal.overlays.GameOverOverlay;
 import com.udacity.gamedev.gigagal.overlays.GigaGalHud;
+import com.udacity.gamedev.gigagal.overlays.OnscreenControls;
 import com.udacity.gamedev.gigagal.overlays.VictoryOverlay;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.ChaseCam;
@@ -21,6 +23,7 @@ public class GameplayScreen extends ScreenAdapter {
 
     public static final String TAG = GameplayScreen.class.getName();
 
+    OnscreenControls onscreenControls;
     SpriteBatch batch;
     long levelEndOverlayStartTime;
     private Level level;
@@ -39,7 +42,19 @@ public class GameplayScreen extends ScreenAdapter {
         hud = new GigaGalHud();
         victoryOverlay = new VictoryOverlay();
         gameOverOverlay = new GameOverOverlay();
+
+        onscreenControls = new OnscreenControls();
+
+        Gdx.input.setInputProcessor(onscreenControls);
+        /*if (onMobile()) {
+            Gdx.input.setInputProcessor(onscreenControls);
+        }*/
+
         startNewLevel();
+    }
+
+    private boolean onMobile(){
+        return Gdx.app.getType() == Application.ApplicationType.Android;
     }
 
     @Override
@@ -49,6 +64,8 @@ public class GameplayScreen extends ScreenAdapter {
         gameOverOverlay.viewport.update(width, height, true);
         level.viewport.update(width, height, true);
         chaseCam.camera = level.viewport.getCamera();
+        onscreenControls.viewport.update(width, height, true);
+        onscreenControls.recalculateButtonPositions();
     }
 
     @Override
@@ -72,6 +89,11 @@ public class GameplayScreen extends ScreenAdapter {
 
 
         level.render(batch);
+
+        onscreenControls.render(batch);
+        /*if (onMobile()) {
+            onscreenControls.render(batch);
+        }*/
 
         hud.render(batch, level.getGigaGal().getLives(), level.getGigaGal().getAmmo(), level.score);
         renderLevelEndOverlays(batch);
@@ -115,6 +137,7 @@ public class GameplayScreen extends ScreenAdapter {
 
         chaseCam.camera = level.viewport.getCamera();
         chaseCam.target = level.getGigaGal();
+        onscreenControls.gigaGal = level.getGigaGal();
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 

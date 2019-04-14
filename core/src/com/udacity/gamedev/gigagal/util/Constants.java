@@ -8,10 +8,13 @@ public class Constants {
     // World/Camera
     public static final Color BACKGROUND_COLOR = Color.SKY;
     public static final float WORLD_SIZE = 160;
-    public static final float KILL_PLANE = -200;
+    public static final float KILL_PLANE = -50;
     public static final float GRAVITY = 10;
     public static final float CHASE_CAM_MOVE_SPEED = WORLD_SIZE;
     public static final String TEXTURE_ATLAS = "images/gigagal.pack.atlas";
+
+    //Touch Controls
+    public static final float ONSCREEN_CONTROLS_VIEWPORT_SIZE = 200;
 
     // GigaGal
     public static final Vector2 GIGAGAL_EYE_POSITION = new Vector2(16, 24);
@@ -46,6 +49,7 @@ public class Constants {
     public static final String FOREST_PLATFORM_THIN = "forest_platform_thin";
     public static final String FOREST_PLATFORM_THIN_HALF = "forest_platform_thin_half";
     public static final String FOREST_PLATFORM_THIN_QUARTER = "forest_platform_thin_quarter";
+    public static final String PLATFORM_DIRT = "forest_platform_dirt";
     //public static final String PLATFORM_SPRITE = "platform";
     //public static final int PLATFORM_EDGE = 8;
 
@@ -110,7 +114,7 @@ public class Constants {
     // Victory/Game Over screens
     public static final float LEVEL_END_DURATION = 5;
     public static final String VICTORY_MESSAGE = "You are the Winrar!";
-    public static final String GAME_OVER_MESSAGE = "You Lose! Good Day Sir!";
+    public static final String GAME_OVER_MESSAGE = "You Lose! Good Day Ser!";
     public static final int EXPLOSION_COUNT =500;
     public static final int ENEMY_COUNT =200;
     public static final String FONT_FILE = "font/header.fnt";
@@ -121,5 +125,13 @@ public class Constants {
     public static final int POWERUP_SCORE = 50;
 
     public static final String BACKGROUND_PATH = "images/cloud_background.png";
+
+    // Onscreen Controls
+    public static final String MOVE_LEFT_BUTTON = "button-move-left";
+    public static final String MOVE_RIGHT_BUTTON = "button-move-right";
+    public static final String SHOOT_BUTTON = "button-shoot";
+    public static final String JUMP_BUTTON = "button-jump";
+    public static final Vector2 BUTTON_CENTER = new Vector2(15, 15);
+    public static final float BUTTON_RADIUS = 32;
 
 }

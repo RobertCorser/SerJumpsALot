@@ -27,8 +27,7 @@ public class GigaGalHud {
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
         final String hudString =
-                Constants.HUD_SCORE_LABEL + score + "\n" +
-                        Constants.HUD_AMMO_LABEL + ammo;
+                Constants.HUD_SCORE_LABEL + score + "\n";
 
         font.draw(batch, hudString, Constants.HUD_MARGIN, viewport.getWorldHeight() - Constants.HUD_MARGIN);
         final TextureRegion standingRight = Assets.instance.gigaGalAssets.standingRight;

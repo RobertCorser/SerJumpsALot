@@ -27,6 +27,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ExplosionAssets explosionAssets;
     public PowerupAssets powerupAssets;
     public ExitPortalAssets exitPortalAssets;
+    public OnscreenControlsAssets onscreenControlsAssets;
 
     private AssetManager assetManager;
 
@@ -50,6 +51,7 @@ public class Assets implements Disposable, AssetErrorListener {
         explosionAssets = new ExplosionAssets(atlas);
         powerupAssets = new PowerupAssets(atlas);
         exitPortalAssets = new ExitPortalAssets(atlas);
+        onscreenControlsAssets = new OnscreenControlsAssets(atlas);
 
         backgroundImg = new Texture(Constants.BACKGROUND_PATH);
         backgroundImg.setWrap(Texture.TextureWrap.MirroredRepeat, Texture.TextureWrap.MirroredRepeat);
@@ -109,6 +111,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final AtlasRegion forestPlatformThin;
         public final AtlasRegion forestPlatformThinHalf;
         public final AtlasRegion forestPlatformThinQuarter;
+        public final AtlasRegion platformDirt;
 
 
         public PlatformAssets(TextureAtlas atlas) {
@@ -116,6 +119,8 @@ public class Assets implements Disposable, AssetErrorListener {
             forestPlatformThin = atlas.findRegion(Constants.FOREST_PLATFORM_THIN);
             forestPlatformThinHalf = atlas.findRegion(Constants.FOREST_PLATFORM_THIN_HALF);
             forestPlatformThinQuarter = atlas.findRegion(Constants.FOREST_PLATFORM_THIN_QUARTER);
+
+            platformDirt = atlas.findRegion(Constants.PLATFORM_DIRT);
 
 
 
@@ -187,5 +192,21 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
 
+    public class OnscreenControlsAssets {
+
+        public final AtlasRegion moveRight;
+        public final AtlasRegion moveLeft;
+        public final AtlasRegion shoot;
+        public final AtlasRegion jump;
+
+        public OnscreenControlsAssets(TextureAtlas atlas) {
+            moveRight = atlas.findRegion(Constants.MOVE_RIGHT_BUTTON);
+            moveLeft = atlas.findRegion(Constants.MOVE_LEFT_BUTTON);
+            shoot = atlas.findRegion(Constants.SHOOT_BUTTON);
+            jump = atlas.findRegion(Constants.JUMP_BUTTON);
+        }
+
+
+    }
 
 }

@@ -132,7 +132,16 @@ public class GigaGal {
         // Move left/right
         if (jumpState != JumpState.RECOILING) {
 
-            boolean left = Gdx.input.isKeyPressed(Keys.LEFT) || leftButtonPressed;
+            if(walkState == WalkState.WALKING){
+                if(facing == Direction.RIGHT){
+                    moveRight(delta);
+                }
+                else {
+                    moveLeft(delta);
+                }
+            }
+
+            /*boolean left = Gdx.input.isKeyPressed(Keys.LEFT) || leftButtonPressed;
             boolean right = Gdx.input.isKeyPressed(Keys.RIGHT) || rightButtonPressed;
 
             if (left && !right) {
@@ -141,7 +150,7 @@ public class GigaGal {
                 moveRight(delta);
             } else {
                 walkState = Enums.WalkState.NOT_WALKING;
-            }
+            }*/
         }
 
         // Jump
@@ -182,6 +191,7 @@ public class GigaGal {
         }
     }
 
+
     public void shoot() {
         if (ammo > 0) {
 
@@ -202,6 +212,7 @@ public class GigaGal {
             level.spawnBullet(bulletPosition, facing);
         }
     }
+
 
     boolean landedOnPlatform(Platform platform, float delta) {
         boolean leftFootIn = false;
@@ -228,7 +239,7 @@ public class GigaGal {
             walkStartTime = TimeUtils.nanoTime();
         }
         walkState = Enums.WalkState.WALKING;
-        facing = Direction.LEFT;
+        //facing = Direction.LEFT;
         position.x -= delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
@@ -237,7 +248,7 @@ public class GigaGal {
             walkStartTime = TimeUtils.nanoTime();
         }
         walkState = Enums.WalkState.WALKING;
-        facing = Direction.RIGHT;
+        //facing = Direction.RIGHT;
         position.x += delta * Constants.GIGAGAL_MOVE_SPEED;
     }
 
@@ -296,6 +307,22 @@ public class GigaGal {
 
         Utils.drawTextureRegion(batch, region, position, Constants.GIGAGAL_EYE_POSITION);
 
+    }
+
+    public void setFacing(Direction direction){
+        facing = direction;
+    }
+
+    public void setWalkState(WalkState walkState){
+        this.walkState = walkState;
+    }
+
+    public Direction getFacing(){
+        return facing;
+    }
+
+    public WalkState getWalkState(){
+        return walkState;
     }
 
 }

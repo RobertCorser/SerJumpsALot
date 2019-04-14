@@ -1,6 +1,7 @@
 package com.udacity.gamedev.gigagal.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.udacity.gamedev.gigagal.util.Assets;
 import com.udacity.gamedev.gigagal.util.Constants;
@@ -48,6 +49,44 @@ public class Platform {
                             bottom,
                             Assets.instance.platformAssets.forestPlatformSolid.getRegionWidth(),
                             Assets.instance.platformAssets.forestPlatformSolid.getRegionHeight());
+
+                    //Draw dirt below platform, 3 times
+                    batch.draw(Assets.instance.platformAssets.platformDirt,
+                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
+                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight(),
+                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
+                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
+
+                    batch.draw(Assets.instance.platformAssets.platformDirt,
+                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
+                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 2,
+                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
+                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
+
+                    batch.draw(Assets.instance.platformAssets.platformDirt,
+                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
+                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 3,
+                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
+                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
+
+                    batch.draw(Assets.instance.platformAssets.platformDirt,
+                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
+                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 4,
+                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
+                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
+
+                    batch.draw(Assets.instance.platformAssets.platformDirt,
+                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
+                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 5,
+                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
+                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
+
+                    batch.draw(Assets.instance.platformAssets.platformDirt,
+                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
+                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 6,
+                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
+                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
+
                 }
             }
         } else {
