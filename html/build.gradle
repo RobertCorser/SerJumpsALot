@@ -7,8 +7,8 @@ gwt {
     minHeapSize="1G"
 
     src = files(file("src/")) // Needs to be in front of "modules" below.
-    modules 'com.udacity.gamedev.gigagal.GdxDefinition'
-    devModules 'com.udacity.gamedev.gigagal.GdxDefinitionSuperdev'
+    modules 'com.udacity.gamedev.serjumpsalot.GdxDefinition'
+    devModules 'com.udacity.gamedev.serjumpsalot.GdxDefinitionSuperdev'
     project.webAppDirName = 'webapp'
 
     compiler {

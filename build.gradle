@@ -20,7 +20,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "GigaGal"
+        appName = "SerJumpsALot"
         gdxVersion = '1.7.0'
         roboVMVersion = '1.8.0'
         box2DLightsVersion = '1.4'
@@ -98,22 +98,22 @@ project(":core") {
     }
 
     task packTextures {
-        def pack = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png")
-        def atlas = new File("${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas")
+        def pack = new File("${rootProject.getRootDir()}/android/assets/images/serjumpsalot.pack.png")
+        def atlas = new File("${rootProject.getRootDir()}/android/assets/images/serjumpsalot.pack.atlas")
 
         inputs.dir "${rootProject.getRootDir()}/core/rawAssets/sprites"
-        outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.png"
-        outputs.file "${rootProject.getRootDir()}/android/assets/images/gigagal.pack.atlas"
+        outputs.file "${rootProject.getRootDir()}/android/assets/images/serjumpsalot.pack.png"
+        outputs.file "${rootProject.getRootDir()}/android/assets/images/serjumpsalot.pack.atlas"
 
         doLast {
             pack.delete()
             atlas.delete()
-            TexturePacker.process("${rootProject.getRootDir()}/core/rawAssets/sprites", "${rootProject.getRootDir()}/android/assets/images", "gigagal.pack")
+            TexturePacker.process("${rootProject.getRootDir()}/core/rawAssets/sprites", "${rootProject.getRootDir()}/android/assets/images", "serjumpsalot.pack")
         }
     }
 
     task copyLevels(type: Copy){
-        from "../GigaGalLevels/scenes"
+        from "../SerJumpsALotLevels/scenes"
         into "../android/assets/levels"
         exclude "MainScene.dt"
     }

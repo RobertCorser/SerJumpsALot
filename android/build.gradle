@@ -59,7 +59,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.udacity.gamedev.gigagal.android/com.udacity.gamedev.gigagal.android.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.udacity.gamedev.serjumpsalot.android/com.udacity.gamedev.serjumpsalot.android.AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.
