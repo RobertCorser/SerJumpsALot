@@ -13,12 +13,17 @@ import com.udacity.gamedev.serjumpsalot.util.Utils;
 
 public class Enemy {
 
-    final long startTime;
-    //final float bobOffset;
-    private final Platform platform;
-    public Vector2 position;
+    //Public fields
     public int health;
+    public Vector2 position;
+
+    //Package-private fields
+    long startTime;
+
+    //Private fields
     private Direction direction;
+    private final Platform platform;
+
 
     public Enemy(Platform platform) {
         this.platform = platform;
@@ -42,8 +47,8 @@ public class Enemy {
         if (position.x < platform.left) {
             position.x = platform.left;
             direction = Direction.RIGHT;
-        } else if (position.x > platform.right) {
-            position.x = platform.right;
+        } else if (position.x + Constants.ENEMY_SIZE > platform.right) {
+            position.x = platform.right - Constants.ENEMY_SIZE;
             direction = Direction.LEFT;
         }
 
@@ -59,4 +64,9 @@ public class Enemy {
     protected void setDirection(Direction direction){
         this.direction = direction;
     }
+
+    protected Platform getPlatform(){
+        return platform;
+    }
+
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.udacity.gamedev.serjumpsalot.Level;
 import com.udacity.gamedev.serjumpsalot.entities.Enemy;
 import com.udacity.gamedev.serjumpsalot.entities.ExitPortal;
+import com.udacity.gamedev.serjumpsalot.entities.JumpingEnemy;
 import com.udacity.gamedev.serjumpsalot.entities.SerJumpsALot;
 import com.udacity.gamedev.serjumpsalot.entities.Platform;
 import com.udacity.gamedev.serjumpsalot.entities.Powerup;
@@ -136,6 +137,10 @@ public class LevelLoader {
             if (identifier != null && identifier.equals(Constants.LEVEL_WALKING_ENEMY_TAG)) {
                 final WalkingEnemy enemy = new WalkingEnemy(platform);
                 level.getEnemies().add(enemy);
+            }
+            if (identifier != null && identifier.equals(Constants.LEVEL_JUMPING_ENEMY_TAG)) {
+                final JumpingEnemy enemy = new JumpingEnemy(platform);
+                level.getJumpingEnemies().add(enemy);
             }
         }
 

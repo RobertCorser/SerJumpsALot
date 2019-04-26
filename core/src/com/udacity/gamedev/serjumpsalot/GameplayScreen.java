@@ -132,7 +132,7 @@ public class GameplayScreen extends ScreenAdapter {
         //level = Level.debugLevel();
 
        //String levelName = Constants.LEVELS[MathUtils.random(Constants.LEVELS.length - 1)];
-        level = LevelLoader.load("levels/Level1.dt");
+        level = LevelLoader.load("levels/Level2.dt");
 
         chaseCam.camera = level.viewport.getCamera();
         chaseCam.target = level.getSerJumpsALot();

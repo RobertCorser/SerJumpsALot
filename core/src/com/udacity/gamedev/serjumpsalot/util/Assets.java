@@ -113,6 +113,12 @@ public class Assets implements Disposable, AssetErrorListener {
         public final AtlasRegion forestPlatformThinQuarter;
         public final AtlasRegion platformDirt;
 
+        public final AtlasRegion castlePlatformSolid;
+        public final AtlasRegion castlePlatformThin;
+        public final AtlasRegion castlePlatformThinHalf;
+        public final AtlasRegion castlePlatformThinQuarter;
+
+        public final AtlasRegion castlePlatformDirt;
 
         public PlatformAssets(TextureAtlas atlas) {
             forestPlatformSolid = atlas.findRegion(Constants.FOREST_PLATFORM_SOLID);
@@ -122,8 +128,12 @@ public class Assets implements Disposable, AssetErrorListener {
 
             platformDirt = atlas.findRegion(Constants.PLATFORM_DIRT);
 
+            castlePlatformSolid = atlas.findRegion(Constants.CASTLE_PLATFORM_SOLID);
+            castlePlatformThin = atlas.findRegion(Constants.CASTLE_PLATFORM_THIN);
+            castlePlatformThinHalf = atlas.findRegion(Constants.CASTLE_PLATFORM_THIN_HALF);
+            castlePlatformThinQuarter = atlas.findRegion(Constants.CASTLE_PLATFORM_THIN_QUARTER);
 
-
+            castlePlatformDirt = atlas.findRegion(Constants.CASTLE_PLATFORM_DIRT);
             //int edge = Constants.PLATFORM_EDGE;
             //platformNinePatch = new NinePatch(region, edge, edge, edge, edge);
         }
@@ -131,10 +141,22 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public class BulletAssets {
 
-        public final AtlasRegion bullet;
+        public final AtlasRegion bullet1;
+        public final AtlasRegion bullet2;
+        public final AtlasRegion bullet3;
+        public final AtlasRegion bullet4;
+
+        public final Animation bulletAnimation;
 
         public BulletAssets(TextureAtlas atlas) {
-            bullet = atlas.findRegion(Constants.BULLET_SPRITE);
+            bullet1 = atlas.findRegion(Constants.BULLET_SPRITE_1);
+            bullet2 = atlas.findRegion(Constants.BULLET_SPRITE_2);
+            bullet3 = atlas.findRegion(Constants.BULLET_SPRITE_3);
+            bullet4 = atlas.findRegion(Constants.BULLET_SPRITE_4);
+
+            Array<AtlasRegion> bulletFrames = new Array<AtlasRegion>();
+            bulletFrames.addAll(bullet1, bullet2, bullet3, bullet4);
+            bulletAnimation = new Animation(Constants.BULLET_LOOP_DURATION, bulletFrames, PlayMode.LOOP);
         }
 
     }
@@ -151,6 +173,11 @@ public class Assets implements Disposable, AssetErrorListener {
         public final AtlasRegion blueEnemyRight3;
         public final Animation blueEnemyWalkingRight;
 
+        public final AtlasRegion greenEnemyRight1;
+        public final AtlasRegion greenEnemyRight2;
+        public final AtlasRegion greenEnemyRight3;
+        public final Animation greenEnemyWalkingRight;
+
         public EnemyAssets(TextureAtlas atlas) {
             blueEnemyLeft1 = atlas.findRegion(Constants.BLUE_ENEMY_LEFT_1);
             blueEnemyLeft2 = atlas.findRegion(Constants.BLUE_ENEMY_LEFT_2);
@@ -165,6 +192,13 @@ public class Assets implements Disposable, AssetErrorListener {
             Array<AtlasRegion> walkingRight = new Array<AtlasRegion>();
             walkingRight.addAll(blueEnemyRight1, blueEnemyRight2, blueEnemyRight3);
             blueEnemyWalkingRight = new Animation(Constants.WALK_LOOP_DURATION, walkingRight, PlayMode.LOOP);
+
+            greenEnemyRight1 = atlas.findRegion(Constants.GREEN_ENEMY_RIGHT_1);
+            greenEnemyRight2 = atlas.findRegion(Constants.GREEN_ENEMY_RIGHT_2);
+            greenEnemyRight3 = atlas.findRegion(Constants.GREEN_ENEMY_RIGHT_3);
+            Array<AtlasRegion> greenWalkingRight = new Array<AtlasRegion>();
+            greenWalkingRight.addAll(greenEnemyRight1, greenEnemyRight2, greenEnemyRight3);
+            greenEnemyWalkingRight = new Animation(Constants.WALK_LOOP_DURATION, greenWalkingRight, PlayMode.LOOP);
 
         }
     }

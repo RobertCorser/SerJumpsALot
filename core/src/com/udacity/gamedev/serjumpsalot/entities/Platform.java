@@ -1,6 +1,7 @@
 package com.udacity.gamedev.serjumpsalot.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.udacity.gamedev.serjumpsalot.util.Assets;
 import com.udacity.gamedev.serjumpsalot.util.Enums.PlatformRegion;
 import com.udacity.gamedev.serjumpsalot.util.Enums.PlatformType;
@@ -37,76 +38,70 @@ public class Platform {
         final float width = right - left;
         final float height = top - bottom;
 
+        //Default value
+        TextureRegion platformTexture = null;
+        TextureRegion dirtTexture = null;
+
         if (length > 1) {
             for (int x = 0; x < length; x++) {
                 if (type == PlatformType.THICK) {
-                    batch.draw(Assets.instance.platformAssets.forestPlatformSolid,
-                            left + (Assets.instance.platformAssets.forestPlatformSolid.getRegionWidth() * x),
+                    if (region == PlatformRegion.FOREST) {
+                        platformTexture = Assets.instance.platformAssets.forestPlatformSolid;
+                        dirtTexture = Assets.instance.platformAssets.platformDirt;
+                    } else if (region == PlatformRegion.CASTLE) {
+                        platformTexture = Assets.instance.platformAssets.castlePlatformSolid;
+                        dirtTexture = Assets.instance.platformAssets.castlePlatformDirt;
+                    }
+
+                    //Draw top of platform
+                    batch.draw(platformTexture,
+                            left + (platformTexture.getRegionWidth() * x),
                             bottom,
-                            Assets.instance.platformAssets.forestPlatformSolid.getRegionWidth(),
-                            Assets.instance.platformAssets.forestPlatformSolid.getRegionHeight());
+                            platformTexture.getRegionWidth(),
+                            platformTexture.getRegionHeight());
 
-                    //Draw dirt below platform, 3 times
-                    batch.draw(Assets.instance.platformAssets.platformDirt,
-                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
-                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight(),
-                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
-                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
+                    //Draw dirt below platform
+                    for (int y = 1; y < 7; y++) {
+                        batch.draw(dirtTexture,
+                                left + (dirtTexture.getRegionWidth() * x),
+                                bottom - dirtTexture.getRegionHeight() * y,
+                                dirtTexture.getRegionWidth(),
+                                dirtTexture.getRegionHeight());
+                    }
 
-                    batch.draw(Assets.instance.platformAssets.platformDirt,
-                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
-                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 2,
-                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
-                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
-
-                    batch.draw(Assets.instance.platformAssets.platformDirt,
-                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
-                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 3,
-                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
-                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
-
-                    batch.draw(Assets.instance.platformAssets.platformDirt,
-                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
-                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 4,
-                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
-                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
-
-                    batch.draw(Assets.instance.platformAssets.platformDirt,
-                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
-                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 5,
-                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
-                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
-
-                    batch.draw(Assets.instance.platformAssets.platformDirt,
-                            left + (Assets.instance.platformAssets.platformDirt.getRegionWidth() * x),
-                            bottom - Assets.instance.platformAssets.platformDirt.getRegionHeight() * 6,
-                            Assets.instance.platformAssets.platformDirt.getRegionWidth(),
-                            Assets.instance.platformAssets.platformDirt.getRegionHeight());
 
                 }
             }
         } else {
-            if(width == 32){
-                batch.draw(Assets.instance.platformAssets.forestPlatformThinQuarter,
-                        left,
-                        bottom,
-                        width,
-                        height);
+            if (width == 32) {
+                if (region == PlatformRegion.FOREST) {
+                    platformTexture = Assets.instance.platformAssets.forestPlatformThinQuarter;
+                }
+                else {
+                    platformTexture = Assets.instance.platformAssets.castlePlatformThinQuarter;
+                }
+
+            } else if (width == 64) {
+                if (region == PlatformRegion.FOREST) {
+                    platformTexture = Assets.instance.platformAssets.forestPlatformThinHalf;
+                }
+                else {
+                    platformTexture = Assets.instance.platformAssets.forestPlatformThinHalf;
+                }
+
+            } else {
+                if (region == PlatformRegion.FOREST) {
+                    platformTexture = Assets.instance.platformAssets.forestPlatformThin;
+                } else {
+                    platformTexture = Assets.instance.platformAssets.castlePlatformThin;
+                }
             }
-            else if(width == 64){
-                batch.draw(Assets.instance.platformAssets.forestPlatformThinHalf,
-                        left,
-                        bottom,
-                        width,
-                        height);
-            }
-            else {
-                batch.draw(Assets.instance.platformAssets.forestPlatformThin,
-                        left,
-                        bottom,
-                        width,
-                        height);
-            }
+
+            batch.draw(platformTexture,
+                    left,
+                    bottom,
+                    width,
+                    height);
 
         }
         //Assets.instance.platformAssets.platformNinePatch.draw(batch, left - 1, bottom - 1, width + 2, height + 2);

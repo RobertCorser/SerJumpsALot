@@ -50,16 +50,27 @@ public class Constants {
     public static final String FOREST_PLATFORM_THIN_HALF = "forest_platform_thin_half";
     public static final String FOREST_PLATFORM_THIN_QUARTER = "forest_platform_thin_quarter";
     public static final String PLATFORM_DIRT = "forest_platform_dirt";
-    //public static final String PLATFORM_SPRITE = "platform";
-    //public static final int PLATFORM_EDGE = 8;
+
+    public static final String CASTLE_PLATFORM_SOLID = "castle_platform_solid";
+    public static final String CASTLE_PLATFORM_THIN = "castle_platform_thin";
+    public static final String CASTLE_PLATFORM_THIN_HALF = "castle_platform_thin_half";
+    public static final String CASTLE_PLATFORM_THIN_QUARTER = "castle_platform_thin_quarter";
+    public static final String CASTLE_PLATFORM_DIRT = "castle_platform_black_darkness_of_death";
 
     // Enemy
+    public static final int ENEMY_SIZE = 16;
     public static final String BLUE_ENEMY_LEFT_1 = "azul-left-1";
     public static final String BLUE_ENEMY_LEFT_2 = "azul-left-2";
     public static final String BLUE_ENEMY_LEFT_3 = "azul-left-3";
     public static final String BLUE_ENEMY_RIGHT_1 = "azul-right-1";
     public static final String BLUE_ENEMY_RIGHT_2 = "azul-right-2";
     public static final String BLUE_ENEMY_RIGHT_3 = "azul-right-3";
+
+    public static final String GREEN_ENEMY_RIGHT_1 = "verde-1";
+    public static final String GREEN_ENEMY_RIGHT_2 = "verde-2";
+    public static final String GREEN_ENEMY_RIGHT_3 = "verde-3";
+
+
     public static final float ENEMY_MOVEMENT_SPEED = 10;
     public static final float ENEMY_BOB_AMPLITUDE = 2;
     public static final float ENEMY_BOB_PERIOD = 3.0f;
@@ -77,9 +88,13 @@ public class Constants {
     public static final String BEHOLDER_RIGHT_3 = "beholder-right-3";
 
     // Bullet
-    public static final String BULLET_SPRITE = "bullet";
+    public static final String BULLET_SPRITE_1 = "missile-1";
+    public static final String BULLET_SPRITE_2 = "missile-2";
+    public static final String BULLET_SPRITE_3 = "missile-3";
+    public static final String BULLET_SPRITE_4 = "missile-4";
     public static final float BULLET_MOVE_SPEED = 150;
     public static final Vector2 BULLET_CENTER = new Vector2(3, 2);
+    public static final float BULLET_LOOP_DURATION = 0.15f;
 
     // Explosion
     public static final String EXPLOSION_LARGE = "explosion-large";
@@ -116,6 +131,7 @@ public class Constants {
     public static final String LEVEL_HEIGHT_KEY = "height";
     public static final String LEVEL_IDENTIFIER_KEY = "itemIdentifier";
     public static final String LEVEL_WALKING_ENEMY_TAG = "wenemy";
+    public static final String LEVEL_JUMPING_ENEMY_TAG = "jenemy";
     public static final String[] LEVELS = {"levels/Level1.dt", "levels/Level2.dt"};
 
     // HUD
@@ -126,7 +142,7 @@ public class Constants {
 
     // Victory/Game Over screens
     public static final float LEVEL_END_DURATION = 5;
-    public static final String VICTORY_MESSAGE = "You are the Winrar!";
+    public static final String VICTORY_MESSAGE = "You Win! Onward brave Knight!";
     public static final String GAME_OVER_MESSAGE = "You Lose! Good Day Ser!";
     public static final int EXPLOSION_COUNT =500;
     public static final int ENEMY_COUNT =200;

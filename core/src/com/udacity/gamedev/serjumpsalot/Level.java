@@ -11,6 +11,7 @@ import com.udacity.gamedev.serjumpsalot.entities.Bullet;
 import com.udacity.gamedev.serjumpsalot.entities.Enemy;
 import com.udacity.gamedev.serjumpsalot.entities.ExitPortal;
 import com.udacity.gamedev.serjumpsalot.entities.Explosion;
+import com.udacity.gamedev.serjumpsalot.entities.JumpingEnemy;
 import com.udacity.gamedev.serjumpsalot.entities.SerJumpsALot;
 import com.udacity.gamedev.serjumpsalot.entities.Platform;
 import com.udacity.gamedev.serjumpsalot.entities.Powerup;
@@ -29,6 +30,7 @@ public class Level {
     private ExitPortal exitPortal;
     private Array<Platform> platforms;
     private DelayedRemovalArray<WalkingEnemy> enemies;
+    private DelayedRemovalArray<JumpingEnemy> jumpingEnemies;
     private DelayedRemovalArray<Bullet> bullets;
     private DelayedRemovalArray<Explosion> explosions;
     private DelayedRemovalArray<Powerup> powerups;
@@ -40,6 +42,7 @@ public class Level {
         serJumpsALot = new SerJumpsALot(new Vector2(50, 50), this);
         platforms = new Array<Platform>();
         enemies = new DelayedRemovalArray<WalkingEnemy>();
+        jumpingEnemies = new DelayedRemovalArray<JumpingEnemy>();
         bullets = new DelayedRemovalArray<Bullet>();
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
@@ -88,7 +91,7 @@ public class Level {
             // Update Enemies
             enemies.begin();
             for (int i = 0; i < enemies.size; i++) {
-                Enemy enemy = enemies.get(i);
+                WalkingEnemy enemy = enemies.get(i);
                 enemy.update(delta);
                 if (enemy.health < 1) {
                     spawnExplosion(enemy.position);
@@ -97,6 +100,19 @@ public class Level {
                 }
             }
             enemies.end();
+
+            // Update Jumping Enemies
+            jumpingEnemies.begin();
+            for (int i = 0; i < jumpingEnemies.size; i++) {
+                JumpingEnemy jumpingEnemy = jumpingEnemies.get(i);
+                jumpingEnemy.update(delta);
+                if (jumpingEnemy.health < 1) {
+                    spawnExplosion(jumpingEnemy.position);
+                    jumpingEnemies.removeIndex(i);
+                    score += Constants.ENEMY_KILL_SCORE;
+                }
+            }
+            jumpingEnemies.end();
 
             // Update Explosions
             explosions.begin();
@@ -131,6 +147,10 @@ public class Level {
 
 
         for (WalkingEnemy enemy : enemies) {
+            enemy.render(batch);
+        }
+
+        for (JumpingEnemy enemy : jumpingEnemies) {
             enemy.render(batch);
         }
 
@@ -217,5 +237,9 @@ public class Level {
 
     public void spawnExplosion(Vector2 position) {
         explosions.add(new Explosion(position));
+    }
+
+    public DelayedRemovalArray<JumpingEnemy> getJumpingEnemies(){
+        return jumpingEnemies;
     }
 }

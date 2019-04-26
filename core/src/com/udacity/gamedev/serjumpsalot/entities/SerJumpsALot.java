@@ -97,13 +97,18 @@ public class SerJumpsALot {
                 //TODO Fix this collision detection
                 if(platform.type == Enums.PlatformType.THICK){
                     if(position.y < platform.top){
+                        float entryX;
                         if(position.x < platform.right && position.x > platform.left){
+
                             if(facing == Direction.RIGHT){
                                 position.x = lastFramePosition.x - 1;
                             }
                             if(facing == Direction.LEFT){
                                 position.x = lastFramePosition.x + 1;
+
                             }
+
+                            position.y = lastFramePosition.y;
                             walkState = WalkState.NOT_WALKING;
 
                         }
@@ -144,6 +149,22 @@ public class SerJumpsALot {
             }
         }
 
+        for (JumpingEnemy enemy : level.getJumpingEnemies()) {
+            Rectangle enemyBounds = new Rectangle(
+                    enemy.position.x,
+                    enemy.position.y,
+                    enemy.getTextureRegion().getRegionWidth(),
+                    enemy.getTextureRegion().getRegionHeight()
+            );
+            if (gigaGalBounds.overlaps(enemyBounds)) {
+
+                if (position.x < enemy.position.x) {
+                    recoilFromEnemy(Direction.LEFT);
+                } else {
+                    recoilFromEnemy(Direction.RIGHT);
+                }
+            }
+        }
 
         // Move left/right
         if (jumpState != JumpState.RECOILING) {
@@ -296,6 +317,7 @@ public class SerJumpsALot {
     private void recoilFromEnemy(Direction direction) {
 
         jumpState = JumpState.RECOILING;
+        walkState = WalkState.NOT_WALKING;
         velocity.y = Constants.KNOCKBACK_VELOCITY.y;
 
         if (direction == Direction.LEFT) {
