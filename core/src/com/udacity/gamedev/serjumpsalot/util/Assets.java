@@ -205,6 +205,8 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public class BeholderAssets{
 
+        public final AtlasRegion beholderInactive;
+
         public final AtlasRegion beholderLeft1;
         public final AtlasRegion beholderLeft2;
         public final AtlasRegion beholderLeft3;
@@ -216,6 +218,8 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Animation walkingRightAnimation;
 
         public BeholderAssets(TextureAtlas atlas){
+            beholderInactive = atlas.findRegion(Constants.BEHOLDER_INACTIVE);
+
             beholderLeft1 = atlas.findRegion(Constants.BEHOLDER_LEFT_1);
             beholderLeft2 = atlas.findRegion(Constants.BEHOLDER_LEFT_2);
             beholderLeft3 = atlas.findRegion(Constants.BEHOLDER_LEFT_3);

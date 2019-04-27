@@ -86,7 +86,7 @@ public class Platform {
                     platformTexture = Assets.instance.platformAssets.forestPlatformThinHalf;
                 }
                 else {
-                    platformTexture = Assets.instance.platformAssets.forestPlatformThinHalf;
+                    platformTexture = Assets.instance.platformAssets.castlePlatformThinHalf;
                 }
 
             } else {

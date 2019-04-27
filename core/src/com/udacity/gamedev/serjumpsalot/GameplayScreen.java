@@ -30,6 +30,7 @@ public class GameplayScreen extends ScreenAdapter {
     private GigaGalHud hud;
     private VictoryOverlay victoryOverlay;
     private GameOverOverlay gameOverOverlay;
+    private String currLevel;
 
     @Override
     public void show() {
@@ -43,6 +44,8 @@ public class GameplayScreen extends ScreenAdapter {
         gameOverOverlay = new GameOverOverlay();
 
         onscreenControls = new OnscreenControls();
+
+        currLevel = "levels/Level2.dt";
 
         Gdx.input.setInputProcessor(onscreenControls);
         /*if (onMobile()) {
@@ -132,7 +135,30 @@ public class GameplayScreen extends ScreenAdapter {
         //level = Level.debugLevel();
 
        //String levelName = Constants.LEVELS[MathUtils.random(Constants.LEVELS.length - 1)];
-        level = LevelLoader.load("levels/Level2.dt");
+
+
+        if(currLevel.equals("levels/Level1.dt")){
+            level = LevelLoader.load("levels/Level2.dt");
+            currLevel = "levels/Level2.dt";
+        }
+        else if(currLevel.equals("levels/Level2.dt")){
+            level = LevelLoader.load("levels/Level1.dt");
+            currLevel = "levels/Level1.dt";
+        }
+
+        chaseCam.camera = level.viewport.getCamera();
+        chaseCam.target = level.getSerJumpsALot();
+        onscreenControls.serJumpsALot = level.getSerJumpsALot();
+        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    }
+
+    public void restartLevel(){
+        if(currLevel.equals("levels/Level1.dt")){
+            level = LevelLoader.load("levels/Level1.dt");
+        }
+        else if(currLevel.equals("levels/Level2.dt")){
+            level = LevelLoader.load("levels/Level2.dt");
+        }
 
         chaseCam.camera = level.viewport.getCamera();
         chaseCam.target = level.getSerJumpsALot();
@@ -145,7 +171,6 @@ public class GameplayScreen extends ScreenAdapter {
     }
 
     public void levelFailed() {
-        startNewLevel();
+        restartLevel();
     }
 }
-

@@ -79,6 +79,8 @@ public class Constants {
     public static final float ENEMY_SHOT_RADIUS = 17;
 
     //Beholder
+    public static final String BEHOLDER_INACTIVE = "beholder-inactive";
+
     public static final String BEHOLDER_LEFT_1 = "beholder-left-1";
     public static final String BEHOLDER_LEFT_2 = "beholder-left-2";
     public static final String BEHOLDER_LEFT_3 = "beholder-left-3";
@@ -132,6 +134,7 @@ public class Constants {
     public static final String LEVEL_IDENTIFIER_KEY = "itemIdentifier";
     public static final String LEVEL_WALKING_ENEMY_TAG = "wenemy";
     public static final String LEVEL_JUMPING_ENEMY_TAG = "jenemy";
+    public static final String LEVEL_BEHOLDER_TAG = "boss1";
     public static final String[] LEVELS = {"levels/Level1.dt", "levels/Level2.dt"};
 
     // HUD
@@ -142,7 +145,7 @@ public class Constants {
 
     // Victory/Game Over screens
     public static final float LEVEL_END_DURATION = 5;
-    public static final String VICTORY_MESSAGE = "You Win! Onward brave Knight!";
+    public static final String VICTORY_MESSAGE = "You Win! Onward Ser!";
     public static final String GAME_OVER_MESSAGE = "You Lose! Good Day Ser!";
     public static final int EXPLOSION_COUNT =500;
     public static final int ENEMY_COUNT =200;

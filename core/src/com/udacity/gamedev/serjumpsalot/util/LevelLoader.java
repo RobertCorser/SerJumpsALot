@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.udacity.gamedev.serjumpsalot.Level;
+import com.udacity.gamedev.serjumpsalot.entities.Beholder;
 import com.udacity.gamedev.serjumpsalot.entities.Enemy;
 import com.udacity.gamedev.serjumpsalot.entities.ExitPortal;
 import com.udacity.gamedev.serjumpsalot.entities.JumpingEnemy;
@@ -141,6 +142,9 @@ public class LevelLoader {
             if (identifier != null && identifier.equals(Constants.LEVEL_JUMPING_ENEMY_TAG)) {
                 final JumpingEnemy enemy = new JumpingEnemy(platform);
                 level.getJumpingEnemies().add(enemy);
+            }
+            if (identifier != null && identifier.equals(Constants.LEVEL_BEHOLDER_TAG)) {
+                level.setBeholder(platform);
             }
         }
 

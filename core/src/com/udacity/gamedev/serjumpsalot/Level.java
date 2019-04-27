@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.gamedev.serjumpsalot.entities.Beholder;
 import com.udacity.gamedev.serjumpsalot.entities.Bullet;
 import com.udacity.gamedev.serjumpsalot.entities.Enemy;
 import com.udacity.gamedev.serjumpsalot.entities.ExitPortal;
@@ -31,6 +32,7 @@ public class Level {
     private Array<Platform> platforms;
     private DelayedRemovalArray<WalkingEnemy> enemies;
     private DelayedRemovalArray<JumpingEnemy> jumpingEnemies;
+    private Beholder beholder;
     private DelayedRemovalArray<Bullet> bullets;
     private DelayedRemovalArray<Explosion> explosions;
     private DelayedRemovalArray<Powerup> powerups;
@@ -47,6 +49,7 @@ public class Level {
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
         exitPortal = new ExitPortal(new Vector2(200, 200));
+        beholder = null;
 
         gameOver = false;
         victory = false;
@@ -124,6 +127,13 @@ public class Level {
             explosions.end();
         }
 
+        if(beholder != null){
+            beholder.update(delta);
+            if(beholder.health == 0){
+                beholder = null;
+            }
+        }
+
     }
 
     public void render(SpriteBatch batch) {
@@ -165,6 +175,10 @@ public class Level {
             explosion.render(batch);
         }
 
+        if(beholder != null){
+            beholder.render(batch);
+        }
+
         batch.end();
     }
 
@@ -194,6 +208,9 @@ public class Level {
         powerups.add(new Powerup(new Vector2(20, 110)));
     }
 
+    public void setBeholder(Platform platform){
+        beholder = new Beholder(platform, this);
+    }
 
     public Array<Platform> getPlatforms() {
         return platforms;
@@ -241,5 +258,9 @@ public class Level {
 
     public DelayedRemovalArray<JumpingEnemy> getJumpingEnemies(){
         return jumpingEnemies;
+    }
+
+    public Beholder getBeholder() {
+        return beholder;
     }
 }

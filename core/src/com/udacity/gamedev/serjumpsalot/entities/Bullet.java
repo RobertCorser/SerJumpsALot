@@ -2,6 +2,7 @@ package com.udacity.gamedev.serjumpsalot.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.serjumpsalot.Level;
@@ -17,6 +18,7 @@ public class Bullet {
     public boolean active;
     private Vector2 position;
     private long bulletStartTime;
+    TextureRegion region;
 
     public Bullet(Level level, Vector2 position, Direction direction) {
         this.level = level;
@@ -24,6 +26,9 @@ public class Bullet {
         this.direction = direction;
         active = true;
         bulletStartTime = TimeUtils.nanoTime();
+
+        //Default value
+        region = Assets.instance.bulletAssets.bullet1;
     }
 
     public void update(float delta) {
@@ -54,6 +59,22 @@ public class Bullet {
             }
         }
 
+        if(level.getBeholder() != null){
+            Rectangle enemyBounds = new Rectangle(
+                    level.getBeholder().position.x,
+                    level.getBeholder().position.y,
+                    level.getBeholder().getTextureRegion().getRegionWidth() * 4,
+                    level.getBeholder().getTextureRegion().getRegionHeight() * 4
+            );
+            Rectangle bulletBounds = new Rectangle(position.x, position.y, region.getRegionWidth(), region.getRegionHeight());
+            if (bulletBounds.overlaps(enemyBounds)) {
+                level.spawnExplosion(position);
+                active = false;
+                level.getBeholder().health -= 1;
+                level.score += Constants.ENEMY_HIT_SCORE;
+            }
+        }
+
         final float worldWidth = level.getViewport().getWorldWidth();
         final float cameraX = level.getViewport().getCamera().position.x;
 
@@ -64,7 +85,7 @@ public class Bullet {
 
     public void render(SpriteBatch batch) {
         float timeElapsed = Utils.secondsSince(bulletStartTime);
-        TextureRegion region = Assets.instance.bulletAssets.bulletAnimation.getKeyFrame(timeElapsed);
+        region = Assets.instance.bulletAssets.bulletAnimation.getKeyFrame(timeElapsed);
 
         if(direction == Direction.RIGHT){
             Utils.drawTextureRegion(batch, region, position, Constants.BULLET_CENTER);

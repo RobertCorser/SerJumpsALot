@@ -95,15 +95,15 @@ public class SerJumpsALot {
 
             for (Platform platform : platforms) {
                 //TODO Fix this collision detection
-                if(platform.type == Enums.PlatformType.THICK){
-                    if(position.y < platform.top){
+                if (platform.type == Enums.PlatformType.THICK) {
+                    if (position.y < platform.top) {
                         float entryX;
-                        if(position.x < platform.right && position.x > platform.left){
+                        if (position.x < platform.right && position.x > platform.left) {
 
-                            if(facing == Direction.RIGHT){
+                            if (facing == Direction.RIGHT) {
                                 position.x = lastFramePosition.x - 1;
                             }
-                            if(facing == Direction.LEFT){
+                            if (facing == Direction.LEFT) {
                                 position.x = lastFramePosition.x + 1;
 
                             }
@@ -166,14 +166,33 @@ public class SerJumpsALot {
             }
         }
 
+        if (level.getBeholder() != null) {
+            if (!level.getBeholder().isInactive()) {
+                Rectangle enemyBounds = new Rectangle(
+                        level.getBeholder().position.x,
+                        level.getBeholder().position.y,
+                        level.getBeholder().getTextureRegion().getRegionWidth() * 4,
+                        level.getBeholder().getTextureRegion().getRegionHeight() * 4
+                );
+                if (gigaGalBounds.overlaps(enemyBounds)) {
+
+                    if (position.x < level.getBeholder().position.x) {
+                        recoilFromEnemy(Direction.LEFT);
+                    } else {
+                        recoilFromEnemy(Direction.RIGHT);
+                    }
+                }
+            }
+        }
+
+
         // Move left/right
         if (jumpState != JumpState.RECOILING) {
 
-            if(walkState == WalkState.WALKING){
-                if(facing == Direction.RIGHT){
+            if (walkState == WalkState.WALKING) {
+                if (facing == Direction.RIGHT) {
                     moveRight(delta);
-                }
-                else {
+                } else {
                     moveLeft(delta);
                 }
             }
@@ -350,19 +369,19 @@ public class SerJumpsALot {
 
     }
 
-    public void setFacing(Direction direction){
+    public void setFacing(Direction direction) {
         facing = direction;
     }
 
-    public void setWalkState(WalkState walkState){
+    public void setWalkState(WalkState walkState) {
         this.walkState = walkState;
     }
 
-    public Direction getFacing(){
+    public Direction getFacing() {
         return facing;
     }
 
-    public WalkState getWalkState(){
+    public WalkState getWalkState() {
         return walkState;
     }
 
