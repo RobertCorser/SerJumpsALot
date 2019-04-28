@@ -17,8 +17,8 @@ public class VictoryOverlay {
 
     public final static String TAG = VictoryOverlay.class.getName();
     public final Viewport viewport;
-    final BitmapFont font;
-    Array<Explosion> explosions;
+    private final BitmapFont font;
+    private Array<Explosion> explosions;
 
     public VictoryOverlay() {
         this.viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);

@@ -1,5 +1,7 @@
 package com.udacity.gamedev.serjumpsalot;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -37,6 +39,7 @@ public class Level {
     private DelayedRemovalArray<Explosion> explosions;
     private DelayedRemovalArray<Powerup> powerups;
     private TextureRegion background;
+    private Sound enemyDeathSound;
 
     public Level() {
         viewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
@@ -49,6 +52,8 @@ public class Level {
         explosions = new DelayedRemovalArray<Explosion>();
         powerups = new DelayedRemovalArray<Powerup>();
         exitPortal = new ExitPortal(new Vector2(200, 200));
+        enemyDeathSound = Gdx.audio.newSound(Gdx.files.internal(Constants.ENEMY_DEATH_SOUND));
+
         beholder = null;
 
         gameOver = false;
@@ -98,6 +103,7 @@ public class Level {
                 enemy.update(delta);
                 if (enemy.health < 1) {
                     spawnExplosion(enemy.position);
+                    enemyDeathSound.play(Constants.ENEMY_DEATH_SOUND_VOL);
                     enemies.removeIndex(i);
                     score += Constants.ENEMY_KILL_SCORE;
                 }
@@ -111,6 +117,7 @@ public class Level {
                 jumpingEnemy.update(delta);
                 if (jumpingEnemy.health < 1) {
                     spawnExplosion(jumpingEnemy.position);
+                    enemyDeathSound.play(Constants.ENEMY_DEATH_SOUND_VOL);
                     jumpingEnemies.removeIndex(i);
                     score += Constants.ENEMY_KILL_SCORE;
                 }
@@ -131,6 +138,7 @@ public class Level {
             beholder.update(delta);
             if(beholder.health == 0){
                 beholder = null;
+                enemyDeathSound.play(Constants.ENEMY_DEATH_SOUND_VOL);
             }
         }
 

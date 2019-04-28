@@ -17,6 +17,9 @@ public class Platform {
     public float width;
     public float height;
 
+    public float midX;
+    public float midY;
+
     //This is used to determine how many platforms this platform in made of; default is 1
     public int length = 1;
 
@@ -32,6 +35,12 @@ public class Platform {
         this.bottom = top - height;
         this.left = left;
         this.right = left + width;
+
+        width = right - left;
+        height = top - bottom;
+
+        midX = left + (width / 2);
+        midY = bottom + (height / 2);
     }
 
     public void render(SpriteBatch batch) {

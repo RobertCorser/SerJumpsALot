@@ -25,14 +25,13 @@ public class Enemy {
     private final Platform platform;
 
 
+
     public Enemy(Platform platform) {
         this.platform = platform;
         direction = Direction.RIGHT;
-        //position = new Vector2(platform.left, platform.top + Constants.ENEMY_CENTER.y);
         position = new Vector2(platform.left, platform.top);
         startTime = TimeUtils.nanoTime();
         health = Constants.ENEMY_HEALTH;
-        //bobOffset = MathUtils.random();
     }
 
     public void update(float delta) {

@@ -1,5 +1,7 @@
 package com.udacity.gamedev.serjumpsalot.entities;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -18,7 +20,8 @@ public class Bullet {
     public boolean active;
     private Vector2 position;
     private long bulletStartTime;
-    TextureRegion region;
+    private TextureRegion region;
+    private Sound hitSound;
 
     public Bullet(Level level, Vector2 position, Direction direction) {
         this.level = level;
@@ -26,6 +29,8 @@ public class Bullet {
         this.direction = direction;
         active = true;
         bulletStartTime = TimeUtils.nanoTime();
+
+        hitSound = Gdx.audio.newSound(Gdx.files.internal(Constants.ENEMY_HIT_SOUND));
 
         //Default value
         region = Assets.instance.bulletAssets.bullet1;
@@ -47,6 +52,7 @@ public class Bullet {
                 active = false;
                 enemy.health -= 1;
                 level.score += Constants.ENEMY_HIT_SCORE;
+                hitSound.play(Constants.ENEMY_HIT_SOUND_VOL);
             }
         }
 

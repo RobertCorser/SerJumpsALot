@@ -166,4 +166,27 @@ public class Constants {
     public static final Vector2 BUTTON_CENTER = new Vector2(15, 15);
     public static final float BUTTON_RADIUS = 32;
 
+    //Music and Sound
+    public static final String FOREST_BGM = "sound/Chiptronical.ogg";
+    public static final String CASTLE_BGM = "sound/Electronic Fantasy.ogg";
+    public static final String JUMP_SOUND = "sound/sfx_movement_jump13.wav";
+    public static final String LAND_SOUND = "sound/sfx_movement_jump13_landing.wav";
+    public static final String SHOOT_SOUND = "sound/sfx_sound_neutral11.wav";
+    public static final String ENEMY_HIT_SOUND = "sound/sfx_sounds_impact3.wav";
+    public static final String POWERUP_SOUND = "sound/sfx_sounds_powerup15.wav";
+    public static final String NO_AMMO_SOUND = "sound/sfx_wpn_noammo1.wav";
+    public static final String SER_DEATH_SOUND = "sound/sfx_deathscream_human2.wav";
+    public static final String ENEMY_DEATH_SOUND = "sound/sfx_exp_shortest_hard1.wav";
+
+    //Audio Sound Levels
+    public static final float FOREST_BGM_VOL= 0.4f;
+    public static final float CASTLE_BGM_VOL = 0.4f;
+    public static final float JUMP_SOUND_VOL = 1.0f;
+    public static final float SHOOT_SOUND_VOL = 0.6f;
+    public static final float ENEMY_HIT_SOUND_VOL = 1.0f;
+    public static final float POWERUP_SOUND_VOL = 1.0f;
+    public static final float NO_AMMO_SOUND_VOL = 1.0f;
+    public static final float SER_DEATH_SOUND_VOL = 1.0f;
+    public static final float ENEMY_DEATH_SOUND_VOL = 1.0f;
+
 }

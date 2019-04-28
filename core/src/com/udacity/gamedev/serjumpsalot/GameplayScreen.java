@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -22,15 +23,17 @@ public class GameplayScreen extends ScreenAdapter {
 
     public static final String TAG = GameplayScreen.class.getName();
 
-    OnscreenControls onscreenControls;
-    SpriteBatch batch;
-    long levelEndOverlayStartTime;
+    private OnscreenControls onscreenControls;
+    private SpriteBatch batch;
+    private long levelEndOverlayStartTime;
     private Level level;
     private ChaseCam chaseCam;
     private GigaGalHud hud;
     private VictoryOverlay victoryOverlay;
     private GameOverOverlay gameOverOverlay;
     private String currLevel;
+    private Music forestMusic;
+    private Music castleMusic;
 
     @Override
     public void show() {
@@ -46,6 +49,9 @@ public class GameplayScreen extends ScreenAdapter {
         onscreenControls = new OnscreenControls();
 
         currLevel = "levels/Level2.dt";
+
+        forestMusic = Gdx.audio.newMusic(Gdx.files.internal(Constants.FOREST_BGM));
+        castleMusic = Gdx.audio.newMusic(Gdx.files.internal(Constants.CASTLE_BGM));
 
         Gdx.input.setInputProcessor(onscreenControls);
         /*if (onMobile()) {
@@ -73,6 +79,8 @@ public class GameplayScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         Assets.instance.dispose();
+        forestMusic.dispose();
+        castleMusic.dispose();
     }
 
     @Override
@@ -114,7 +122,6 @@ public class GameplayScreen extends ScreenAdapter {
             }
         }
 
-        // TODO: Repeat the level victory logic to display the game over screen and call levelFailed()
         if (level.gameOver) {
             if (levelEndOverlayStartTime == 0) {
                 levelEndOverlayStartTime = TimeUtils.nanoTime();
@@ -140,10 +147,18 @@ public class GameplayScreen extends ScreenAdapter {
         if(currLevel.equals("levels/Level1.dt")){
             level = LevelLoader.load("levels/Level2.dt");
             currLevel = "levels/Level2.dt";
+            forestMusic.stop();
+            castleMusic.setVolume(Constants.CASTLE_BGM_VOL);
+            castleMusic.setLooping(true);
+            castleMusic.play();
         }
         else if(currLevel.equals("levels/Level2.dt")){
             level = LevelLoader.load("levels/Level1.dt");
             currLevel = "levels/Level1.dt";
+            castleMusic.stop();
+            forestMusic.setVolume(Constants.FOREST_BGM_VOL);
+            forestMusic.setLooping(true);
+            forestMusic.play();
         }
 
         chaseCam.camera = level.viewport.getCamera();

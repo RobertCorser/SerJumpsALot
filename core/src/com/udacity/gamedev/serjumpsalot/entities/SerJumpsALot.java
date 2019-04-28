@@ -2,6 +2,7 @@ package com.udacity.gamedev.serjumpsalot.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -36,6 +37,13 @@ public class SerJumpsALot {
     private long jumpStartTime;
     private int ammo;
     private int lives;
+    private TextureRegion region;
+    private Sound shootSound;
+    private Sound jumpSound;
+    private Sound powerupSound;
+    private Sound noAmmoSound;
+    private Sound hitSound;
+    private Sound deathSound;
 
     public SerJumpsALot(Vector2 spawnLocation, Level level) {
         this.spawnLocation = spawnLocation;
@@ -43,6 +51,13 @@ public class SerJumpsALot {
         position = new Vector2();
         lastFramePosition = new Vector2();
         velocity = new Vector2();
+        region = Assets.instance.gigaGalAssets.standingRight;
+        shootSound = Gdx.audio.newSound(Gdx.files.internal(Constants.SHOOT_SOUND));
+        jumpSound = Gdx.audio.newSound(Gdx.files.internal(Constants.JUMP_SOUND));
+        powerupSound = Gdx.audio.newSound(Gdx.files.internal(Constants.POWERUP_SOUND));
+        noAmmoSound = Gdx.audio.newSound(Gdx.files.internal(Constants.NO_AMMO_SOUND));
+        hitSound = Gdx.audio.newSound(Gdx.files.internal(Constants.ENEMY_HIT_SOUND));
+        deathSound = Gdx.audio.newSound(Gdx.files.internal(Constants.SER_DEATH_SOUND));
         init();
     }
 
@@ -82,6 +97,7 @@ public class SerJumpsALot {
 
         if (position.y < Constants.KILL_PLANE) {
             lives--;
+            deathSound.play(Constants.SER_DEATH_SOUND_VOL);
             if (lives > -1) {
                 respawn();
             }
@@ -97,21 +113,17 @@ public class SerJumpsALot {
                 //TODO Fix this collision detection
                 if (platform.type == Enums.PlatformType.THICK) {
                     if (position.y < platform.top) {
-                        float entryX;
                         if (position.x < platform.right && position.x > platform.left) {
-
-                            if (facing == Direction.RIGHT) {
-                                position.x = lastFramePosition.x - 1;
+                            if (position.x > platform.left && position.x < platform.midX) {
+                                position.x = platform.left;
+                            } else if (position.x < platform.right && position.x > platform.midX){
+                                position.x = platform.right;
                             }
-                            if (facing == Direction.LEFT) {
-                                position.x = lastFramePosition.x + 1;
-
-                            }
-
-                            position.y = lastFramePosition.y;
                             walkState = WalkState.NOT_WALKING;
-
+                            jumpState = JumpState.FALLING;
+                            velocity.setZero();
                         }
+
                     }
                 }
 
@@ -239,6 +251,7 @@ public class SerJumpsALot {
             if (gigaGalBounds.overlaps(powerupBounds)) {
                 ammo += Constants.POWERUP_AMMO;
                 level.score += Constants.POWERUP_SCORE;
+                powerupSound.play(Constants.POWERUP_SOUND_VOL);
                 powerups.removeIndex(i);
             }
         }
@@ -269,6 +282,9 @@ public class SerJumpsALot {
                 );
             }
             level.spawnBullet(bulletPosition, facing);
+            shootSound.play(Constants.SHOOT_SOUND_VOL);
+        } else {
+            noAmmoSound.play(Constants.NO_AMMO_SOUND_VOL);
         }
     }
 
@@ -314,6 +330,7 @@ public class SerJumpsALot {
     private void startJump() {
         jumpState = Enums.JumpState.JUMPING;
         jumpStartTime = TimeUtils.nanoTime();
+        jumpSound.play(Constants.JUMP_SOUND_VOL);
         continueJump();
     }
 
@@ -344,10 +361,12 @@ public class SerJumpsALot {
         } else {
             velocity.x = Constants.KNOCKBACK_VELOCITY.x;
         }
+
+        hitSound.play(Constants.ENEMY_HIT_SOUND_VOL);
+
     }
 
     public void render(SpriteBatch batch) {
-        TextureRegion region = Assets.instance.gigaGalAssets.standingRight;
 
         if (facing == Direction.RIGHT && jumpState != Enums.JumpState.GROUNDED) {
             region = Assets.instance.gigaGalAssets.jumpingRight;
