@@ -62,6 +62,7 @@ public class Bullet {
                 active = false;
                 enemy.health -= 1;
                 level.score += Constants.ENEMY_HIT_SCORE;
+                hitSound.play(Constants.ENEMY_HIT_SOUND_VOL);
             }
         }
 
@@ -78,6 +79,7 @@ public class Bullet {
                 active = false;
                 level.getBeholder().health -= 1;
                 level.score += Constants.ENEMY_HIT_SCORE;
+                hitSound.play(Constants.ENEMY_HIT_SOUND_VOL);
             }
         }
 

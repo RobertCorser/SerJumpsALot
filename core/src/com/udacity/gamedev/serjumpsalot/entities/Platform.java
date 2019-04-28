@@ -73,7 +73,7 @@ public class Platform {
                     for (int y = 1; y < 7; y++) {
                         batch.draw(dirtTexture,
                                 left + (dirtTexture.getRegionWidth() * x),
-                                bottom - dirtTexture.getRegionHeight() * y,
+                                bottom - dirtTexture.getRegionHeight() * y + 3,
                                 dirtTexture.getRegionWidth(),
                                 dirtTexture.getRegionHeight());
                     }
