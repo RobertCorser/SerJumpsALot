@@ -1,7 +1,6 @@
 package com.udacity.gamedev.serjumpsalot.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.gamedev.serjumpsalot.Level;
@@ -74,7 +73,7 @@ public class Beholder extends WalkingEnemy{
         }
     }
 
-    public boolean isInactive() {
+    protected boolean isInactive() {
         return isInactive;
     }
 

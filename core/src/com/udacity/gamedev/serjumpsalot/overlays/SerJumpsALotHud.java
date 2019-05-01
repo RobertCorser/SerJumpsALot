@@ -11,12 +11,12 @@ import com.udacity.gamedev.serjumpsalot.util.Assets;
 import com.udacity.gamedev.serjumpsalot.util.Constants;
 import com.udacity.gamedev.serjumpsalot.util.Utils;
 
-public class GigaGalHud {
+public class SerJumpsALotHud {
 
     public final Viewport viewport;
     final BitmapFont font;
 
-    public GigaGalHud() {
+    public SerJumpsALotHud() {
         this.viewport = new ExtendViewport(Constants.HUD_VIEWPORT_SIZE, Constants.HUD_VIEWPORT_SIZE);
         font = new BitmapFont();
         font.getData().setScale(1);

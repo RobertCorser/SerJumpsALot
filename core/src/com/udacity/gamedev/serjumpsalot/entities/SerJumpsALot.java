@@ -116,7 +116,7 @@ public class SerJumpsALot {
                         if (position.x < platform.right && position.x > platform.left) {
                             if (position.x > platform.left && position.x < platform.midX) {
                                 position.x = platform.left;
-                            } else if (position.x < platform.right && position.x > platform.midX){
+                            } else if (position.x < platform.right && position.x > platform.midX) {
                                 position.x = platform.right;
                             }
                             walkState = WalkState.NOT_WALKING;
@@ -208,7 +208,6 @@ public class SerJumpsALot {
                     moveLeft(delta);
                 }
             }
-
             /*
             boolean left = Gdx.input.isKeyPressed(Keys.LEFT) || leftButtonPressed;
             boolean right = Gdx.input.isKeyPressed(Keys.RIGHT) || rightButtonPressed;
@@ -221,11 +220,14 @@ public class SerJumpsALot {
                 walkState = Enums.WalkState.NOT_WALKING;
             }
             */
+
         }
 
 
         // Jump
-        if (Gdx.input.isKeyPressed(Keys.Z) || jumpButtonPressed) {
+        if (Gdx.input.isKeyPressed(Keys.Z) || jumpButtonPressed)
+
+        {
             switch (jumpState) {
                 case GROUNDED:
                     startJump();
@@ -233,14 +235,20 @@ public class SerJumpsALot {
                 case JUMPING:
                     continueJump();
             }
-        } else {
+        } else
+
+        {
             endJump();
         }
 
         // Check powerups
         DelayedRemovalArray<Powerup> powerups = level.getPowerups();
         powerups.begin();
-        for (int i = 0; i < powerups.size; i++) {
+        for (
+                int i = 0;
+                i < powerups.size; i++)
+
+        {
             Powerup powerup = powerups.get(i);
             Rectangle powerupBounds = new Rectangle(
                     powerup.position.x - Constants.POWERUP_CENTER.x,
@@ -258,9 +266,12 @@ public class SerJumpsALot {
         powerups.end();
 
         // Shoot
-        if (Gdx.input.isKeyJustPressed(Keys.X)) {
+        if (Gdx.input.isKeyJustPressed(Keys.X))
+
+        {
             shoot();
         }
+
     }
 
 

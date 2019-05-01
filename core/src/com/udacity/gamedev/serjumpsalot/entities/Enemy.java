@@ -1,14 +1,9 @@
 package com.udacity.gamedev.serjumpsalot.entities;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.udacity.gamedev.serjumpsalot.util.Assets;
 import com.udacity.gamedev.serjumpsalot.util.Constants;
 import com.udacity.gamedev.serjumpsalot.util.Enums.Direction;
-import com.udacity.gamedev.serjumpsalot.util.Utils;
 
 
 public class Enemy {
@@ -26,7 +21,7 @@ public class Enemy {
 
 
 
-    public Enemy(Platform platform) {
+    Enemy(Platform platform) {
         this.platform = platform;
         direction = Direction.RIGHT;
         position = new Vector2(platform.left, platform.top);

@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.udacity.gamedev.serjumpsalot.overlays.GameOverOverlay;
-import com.udacity.gamedev.serjumpsalot.overlays.GigaGalHud;
 import com.udacity.gamedev.serjumpsalot.overlays.OnscreenControls;
+import com.udacity.gamedev.serjumpsalot.overlays.SerJumpsALotHud;
 import com.udacity.gamedev.serjumpsalot.overlays.VictoryOverlay;
 import com.udacity.gamedev.serjumpsalot.util.Assets;
 import com.udacity.gamedev.serjumpsalot.util.ChaseCam;
@@ -28,7 +28,7 @@ public class GameplayScreen extends ScreenAdapter {
     private long levelEndOverlayStartTime;
     private Level level;
     private ChaseCam chaseCam;
-    private GigaGalHud hud;
+    private SerJumpsALotHud hud;
     private VictoryOverlay victoryOverlay;
     private GameOverOverlay gameOverOverlay;
     private String currLevel;
@@ -42,7 +42,7 @@ public class GameplayScreen extends ScreenAdapter {
 
         batch = new SpriteBatch();
         chaseCam = new ChaseCam();
-        hud = new GigaGalHud();
+        hud = new SerJumpsALotHud();
         victoryOverlay = new VictoryOverlay();
         gameOverOverlay = new GameOverOverlay();
 
