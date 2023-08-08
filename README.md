@@ -1,1 +1,1 @@
-
+SerJumpsALot is a side-scrolling action game developed for Android and Windows. The game is written in Java using the libGDX framework. This game was my honors capstone project for my undergraduate degree. 
